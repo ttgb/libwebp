@@ -11,49 +11,52 @@ Pod::Spec.new do |s|
   s.requires_arc    = false
   
   # Subspecs
+  s.subspec 'webp' do |w|
+    w.header_dir   = 'webp'
+    w.source_files = 'src/webp/*.h'
+  end
+
+  s.subspec 'core' do |core|
+    dsp.header_dir   = 'dsp'
+    dsp.source_files = 'src/utils/*.{h,c}','src/dsp/*.{h,c}','src/enc/*.{h,c}','src/dec/*.{h,c}'
+    dsp.dependency 'libwebp/webp'
+  end
+
   s.subspec 'dsp' do |dsp|
     dsp.header_dir   = 'dsp'
     dsp.source_files = 'src/dsp/*.{h,c}'
-    dsp.dependency 'libwebp/utils'
-    dsp.dependency 'libwebp/enc'
-    dsp.dependency 'libwebp/dec'
+    dsp.dependency 'libwebp/core'
   end
   
   s.subspec 'utils' do |u|
     u.header_dir   = 'utils'
     u.source_files = 'src/utils/*.{h,c}'
-    u.dependency 'libwebp/webp'
-    u.dependency 'libwebp/dsp'
+    u.dependency 'libwebp/core'
   end
 
   s.subspec 'dec' do |dec|
     dec.header_dir    = 'dec'
     dec.source_files = 'src/dec/*.{h,c}'
-    dec.dependency 'libwebp/utils'
-    dec.dependency 'libwebp/enc'
+    dec.dependency 'libwebp/core'
   end
 
   s.subspec 'demux' do |demux|
     demux.header_dir   = 'demux'
     demux.source_files = 'src/demux/*.{h,c}'
-    demux.dependency 'libwebp/utils'
+    demux.dependency 'libwebp/core'
   end
 
   s.subspec 'enc' do |enc|
     enc.header_dir   = 'enc'
     enc.source_files = 'src/enc/*.{h,c}'
-    enc.dependency 'libwebp/utils'
+    enc.dependency 'libwebp/core'
   end
 
   s.subspec 'mux' do |mux|
     mux.header_dir    = 'mux'
     mux.source_files = 'src/mux/*.{h,c}'
-    mux.dependency 'libwebp/dec'
+    mux.dependency 'libwebp/core'
   end
 
-  s.subspec 'webp' do |w|
-    w.header_dir   = 'webp'
-    w.source_files = 'src/webp/*.h'
-  end
   
 end
