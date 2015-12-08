@@ -17,9 +17,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'core' do |core|
-    dsp.header_dir   = 'dsp'
-    dsp.source_files = 'src/utils/*.{h,c}','src/dsp/*.{h,c}','src/enc/*.{h,c}','src/dec/*.{h,c}'
-    dsp.dependency 'libwebp/webp'
+    core.header_dir   = 'core'
+    core.source_files = 'src/utils/*.{h,c}','src/dsp/*.{h,c}','src/enc/*.{h,c}','src/dec/*.{h,c}'
+    core.dependency 'libwebp/webp'
   end
 
   s.subspec 'dsp' do |dsp|
